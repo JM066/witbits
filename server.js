@@ -8,6 +8,9 @@ const randomInterval = (min, max) => {
 };
 
 app.get("/images", ({ query }, res) => {
+  process.stdout.write(
+    `Request received with query: ${JSON.stringify(query)}\n`,
+  );
   const i = query.limit ? images.slice(0, parseInt(query.limit)) : images;
 
   setTimeout(

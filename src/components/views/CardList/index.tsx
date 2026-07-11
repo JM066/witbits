@@ -8,7 +8,7 @@ interface Props {
 }
 
 function CardList({ children, className }: Props) {
-  return <ul className={classNames(styles.gallery, className)}>{children}</ul>;
+  return <ul className={classNames(styles.list, className)}>{children}</ul>;
 }
 
 export default memo(CardList);

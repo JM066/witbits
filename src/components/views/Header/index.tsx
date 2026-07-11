@@ -9,9 +9,7 @@ interface Props {
 
 function Header({ children, className }: Props) {
   return (
-    <header className={classNames(styles.header, className)}>
-      {children}
-    </header>
+    <header className={classNames(styles.header, className)}>{children}</header>
   );
 }
 

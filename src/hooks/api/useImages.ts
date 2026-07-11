@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getImages } from "../../api/images";
 
-const DEFAULT_INITIAL_LIMIT = 10;
+const DEFAULT_INITIAL_LIMIT = 20;
 
 export function useImages({
   initialLimit = DEFAULT_INITIAL_LIMIT,
 }: { initialLimit?: number } = {}) {
   // Use parallel queries for concurrent fetching.
   const full = useQuery({
-    queryKey: ["images", { limit: undefined }],
+    queryKey: ["images"],
     queryFn: ({ signal }) => getImages({ signal }),
     // A failed background refresh shouldn't crash a page that's already showing the initial batch.
     throwOnError: false,
@@ -26,8 +26,6 @@ export function useImages({
   return {
     data,
     isLoading: initial.isLoading && full.isLoading,
-    // We have the initial batch, but the complete set hasn't landed (or failed) yet.
-    isLoadingMore: data !== undefined && !full.data && !full.isError,
     isError: data === undefined && (initial.isError || full.isError),
   };
 }

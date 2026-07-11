@@ -8,13 +8,7 @@ interface CardProps {
 }
 
 function Card({ children, className }: CardProps) {
-  return (
-    <li>
-      <figure className={classNames(styles.card, className)}>
-        {children}
-      </figure>
-    </li>
-  );
+  return <li className={classNames(styles.card, className)}>{children}</li>;
 }
 
 export default memo(Card);

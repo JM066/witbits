@@ -11,10 +11,10 @@ interface Props {
 
 function Content({ description, author, className }: Props) {
   return (
-    <figcaption className={classNames(styles.content, className)}>
+    <div className={classNames(styles.content, className)}>
       <Text className={styles.description} text={description} />
       <Text className={styles.author} text={author} />
-    </figcaption>
+    </div>
   );
 }
 
