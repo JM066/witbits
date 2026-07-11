@@ -1,0 +1,7 @@
+.header {
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  text-align: center;
+}

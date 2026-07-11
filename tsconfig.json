@@ -3,11 +3,19 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": true,  // Change to true to allow JS files
+    "allowJs": true, // Change to true to allow JS files
     "module": "ESNext",
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@api/*": ["./src/api/*"],
+      "@shared/*": ["./src/shared/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
