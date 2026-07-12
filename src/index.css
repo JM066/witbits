@@ -1,0 +1,40 @@
+:root {
+  --color-background: #f9f9f8;
+  --color-primary: #ffe14c;
+  --color-primary-text: #242424;
+  --color-secondary-text: #484545;
+  --color-border: #e4e4e4;
+  --color-secondary: #8e8e8e;
+  --color-error: #e23623;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}

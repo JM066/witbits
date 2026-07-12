@@ -4,16 +4,32 @@ import styles from "./Text.module.css";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   text: string | number;
+  variant?: "primary" | "secondary" | "error" | "muted";
+  align?: "start" | "center" | "end";
+  caption?: boolean;
   as?: ElementType;
   className?: string;
-  muted?: boolean;
 }
 
-function Text({ text, as = "p", muted, className, ...rest }: Props) {
+function Text({
+  text,
+  as = "p",
+  variant = "primary",
+  align,
+  caption = false,
+  className,
+  ...rest
+}: Props) {
   const Element = as;
   return (
     <Element
-      className={classNames(styles.text, muted && styles.muted, className)}
+      className={classNames(
+        styles.text,
+        styles[variant],
+        caption && styles.caption,
+        align && styles[align],
+        className,
+      )}
       {...rest}
     >
       {text}

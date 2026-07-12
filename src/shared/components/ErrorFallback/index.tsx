@@ -1,4 +1,5 @@
 import type { FallbackProps } from "react-error-boundary";
+import Button from "../Button";
 import Text from "../Text";
 
 function ErrorFallback({ resetErrorBoundary }: FallbackProps) {
@@ -6,7 +7,7 @@ function ErrorFallback({ resetErrorBoundary }: FallbackProps) {
     <div role="alert">
       <div className="error-fallback">
         <Text text="Failed to load images." />
-        <button onClick={resetErrorBoundary}>Retry</button>
+        <Button onClick={resetErrorBoundary}>Retry</Button>
       </div>
     </div>
   );

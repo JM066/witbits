@@ -8,7 +8,7 @@ interface Props {
 
 function Skeleton({ className }: Props) {
   return (
-    <div
+    <span
       className={classNames(styles.skeleton, className)}
       aria-hidden="true"
     />

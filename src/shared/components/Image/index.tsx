@@ -26,7 +26,11 @@ function Image({ src, alt, className }: Props) {
     <div className={classNames(styles.image, className)}>
       {status === "loading" && <Skeleton className={styles.placeholder} />}
       {status === "error" ? (
-        <Text text="Image unavailable" muted className={styles.fallback} />
+        <Text
+          text="Image unavailable"
+          variant="muted"
+          className={styles.fallback}
+        />
       ) : (
         <picture>
           <source type="image/webp" srcSet={`${src}.webp`} />

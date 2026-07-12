@@ -1,7 +1,30 @@
 .text {
   margin: 0;
-}
 
-.muted {
-  color: var(--color-secondary);
+  &.primary {
+    color: var(--color-primary-text);
+  }
+  &.secondary {
+    color: var(--color-secondary-text);
+  }
+  &.muted {
+    color: var(--color-secondary);
+  }
+  &.error {
+    color: var(--color-error);
+  }
+
+  &.caption {
+    font-size: 0.75rem;
+  }
+
+  &.start {
+    text-align: start;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.end {
+    text-align: end;
+  }
 }

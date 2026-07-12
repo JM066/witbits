@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getImages } from "../../api/images";
+import { getImages } from "@api/images";
 
-const DEFAULT_INITIAL_LIMIT = 20;
+const DEFAULT_INITIAL_LIMIT = 10;
 
 export function useImages({
   initialLimit = DEFAULT_INITIAL_LIMIT,

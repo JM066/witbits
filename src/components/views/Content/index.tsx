@@ -5,15 +5,15 @@ import Text from "@/shared/components/Text";
 
 interface Props {
   description: string;
-  author: string;
+  name: string;
   className?: string;
 }
 
-function Content({ description, author, className }: Props) {
+function Content({ description, name, className }: Props) {
   return (
     <div className={classNames(styles.content, className)}>
       <Text className={styles.description} text={description} />
-      <Text className={styles.author} text={author} />
+      <Text className={styles.name} text={name} />
     </div>
   );
 }

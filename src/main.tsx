@@ -1,6 +1,10 @@
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
 import App from "./App";
+import Layout from "@/components/views/Layout";
+import Profile from "./pages/Profile";
 import {
   QueryClient,
   QueryClientProvider,
@@ -23,7 +27,14 @@ createRoot(document.getElementById("root")!).render(
       <QueryErrorResetBoundary>
         {({ reset }) => (
           <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
-            <App />
+            <BrowserRouter>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route path="/" element={<App />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
           </ErrorBoundary>
         )}
       </QueryErrorResetBoundary>

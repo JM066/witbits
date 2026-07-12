@@ -5,3 +5,9 @@
   color: var(--color-primary-text);
   text-align: center;
 }
+
+.header a {
+  display: block;
+  text-align: right;
+  color: var(--color-primary-text);
+}
