@@ -5,12 +5,18 @@ import Card from "@/components/views/Card";
 import CardList from "@/components/views/CardList";
 import Text from "@/shared/components/Text";
 import LoadingCards from "@/components/views/LoadingCards";
+import { useState } from "react";
+import Dialog from "@/shared/components/Dialog";
 
 const IMAGE_LIMIT = 10;
 
 const App = () => {
   const { data: images, isLoading } = useImages();
-  console.log("images", images?.length);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Deliberate linear lookup: one scan per render over a small list beats
+  // maintaining an {[id]: image} map. Revisit only if by-id reads multiply.
+  const selectedImage = images?.find((image) => image.id === selectedId);
+
   return (
     <>
       {isLoading && (
@@ -24,7 +30,12 @@ const App = () => {
       <CardList>
         {isLoading && <LoadingCards count={IMAGE_LIMIT} />}
         {images?.map((image) => (
-          <Card key={image.id}>
+          <Card
+            key={image.id}
+            id={image.id}
+            onSelect={setSelectedId}
+            selectLabel={image.description ?? "Untitled"}
+          >
             <Image src={image.url} alt={image.alt_description ?? "Car photo"} />
             <Content
               description={image.description ?? "Untitled"}
@@ -33,6 +44,17 @@ const App = () => {
           </Card>
         ))}
       </CardList>
+      {selectedImage && (
+        <Dialog
+          onClose={() => setSelectedId(null)}
+          title={selectedImage.description ?? "Photo"}
+        >
+          <Image
+            src={selectedImage.url}
+            alt={selectedImage.alt_description ?? "Car photo"}
+          />
+        </Dialog>
+      )}
     </>
   );
 };

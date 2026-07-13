@@ -8,4 +8,25 @@
   box-shadow: 0 1px 0.1875rem rgba(0, 0, 0, 0.12);
   overflow: hidden;
   background-color: var(--color-surface);
+  /* Containing block for the stretched .trigger overlay */
+  position: relative;
+}
+
+/* Invisible button stretched over the card so the whole card is clickable
+   without wrapping the content in a button. Later interactive elements inside
+   the card need position: relative + z-index to sit above it. */
+.trigger {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &:focus-visible {
+    /* Negative offset so the ring isn't clipped by the card's overflow: hidden */
+    outline: 2px solid var(--color-primary-text);
+    outline-offset: -2px;
+  }
 }
