@@ -6,8 +6,17 @@ import styles from "./Profile.module.css";
 const Profile = () => (
   <FormGroup<ProfileValues>
     className={styles.form}
-    onSubmit={(data) => console.log("profile", data)}
-    options={{ defaultValues: { salary: SALARY_MIN } }}
+    onSubmit={(data) => console.log({ data })}
+    options={{
+      defaultValues: {
+        name: "",
+        email: "",
+        dateOfBirth: "",
+        favouriteColour: "",
+        salary: SALARY_MIN,
+      },
+    }}
+    resetOnSubmit
   >
     <FormGroup.Input name="name" label="Name" rules={{ required: true }} />
     <FormGroup.Error name="name" message="Name is required" />

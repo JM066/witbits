@@ -21,7 +21,6 @@ const SalaryInput = ({ className }: { className?: string }) => {
         required: true,
         min: SALARY_MIN,
         max: SALARY_MAX,
-        valueAsNumber: true,
       }}
       className={className}
     />

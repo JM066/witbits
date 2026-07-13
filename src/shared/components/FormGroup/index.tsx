@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import {
   useForm,
   UseFormProps,
@@ -16,6 +16,7 @@ interface Props<TFormValues extends FieldValues> {
   onSubmit: SubmitHandler<TFormValues>;
   options?: UseFormProps<TFormValues>;
   className?: string;
+  resetOnSubmit?: boolean;
 }
 
 function FormGroup<TFormValues extends FieldValues>({
@@ -23,8 +24,16 @@ function FormGroup<TFormValues extends FieldValues>({
   onSubmit,
   options,
   className,
+  resetOnSubmit = false,
 }: Props<TFormValues>) {
   const methods = useForm<TFormValues>(options);
+  const { reset, formState } = methods;
+
+  useEffect(() => {
+    if (resetOnSubmit && formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [resetOnSubmit, formState.isSubmitSuccessful, reset]);
 
   return (
     <FormProvider value={methods}>
