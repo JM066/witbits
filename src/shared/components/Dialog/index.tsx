@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, type ReactNode } from "react";
+import { memo, useEffect, useId, useRef, type ReactNode } from "react";
 import Button from "@/shared/components/Button";
 import styles from "./Dialog.module.css";
 
@@ -56,4 +56,4 @@ function Dialog({ onClose, title, children }: Props) {
   );
 }
 
-export default Dialog;
+export default memo(Dialog);

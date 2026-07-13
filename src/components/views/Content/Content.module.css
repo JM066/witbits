@@ -12,8 +12,4 @@
     -webkit-box-orient: vertical;
     margin: 0;
   }
-
-  & .name {
-    margin: 0;
-  }
 }

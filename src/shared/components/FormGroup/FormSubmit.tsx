@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes } from "react";
+import { memo, type ButtonHTMLAttributes } from "react";
 import Button from "../Button";
 
 type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">;
@@ -11,4 +11,4 @@ function FormSubmit({ children, ...rest }: Props) {
   );
 }
 
-export default FormSubmit;
+export default memo(FormSubmit);

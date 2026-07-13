@@ -1,14 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {
-  QueryClient,
-  QueryClientProvider,
-  QueryErrorResetBoundary,
-} from "@tanstack/react-query";
-import { ErrorBoundary } from "react-error-boundary";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
-import ErrorFallback from "./shared/components/ErrorFallback";
 import { server, http, HttpResponse, delay } from "./test/mocks/server";
 import imagesData from "../public/images.json";
 
@@ -19,13 +13,7 @@ const renderApp = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <QueryErrorResetBoundary>
-        {({ reset }) => (
-          <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
-            <App />
-          </ErrorBoundary>
-        )}
-      </QueryErrorResetBoundary>
+      <App />
     </QueryClientProvider>,
   );
 };

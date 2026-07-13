@@ -6,14 +6,16 @@ import Text from "@/shared/components/Text";
 interface Props {
   description: string;
   name: string;
+  location: string;
   className?: string;
 }
 
-function Content({ description, name, className }: Props) {
+function Content({ description, name, className, location }: Props) {
   return (
     <div className={classNames(styles.content, className)}>
       <Text className={styles.description} text={description} />
-      <Text className={styles.name} text={name} />
+      <Text text={name} />
+      <Text variant="secondary" text={location} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { memo } from "react";
 import { useFormState } from "react-hook-form";
 import Text from "../Text";
 import useFormMethods from "./useFormMethods";
@@ -27,4 +28,4 @@ function FormError({ name, message, className }: Props) {
   );
 }
 
-export default FormError;
+export default memo(FormError);

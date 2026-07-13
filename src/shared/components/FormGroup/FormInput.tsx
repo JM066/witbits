@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { memo, InputHTMLAttributes } from "react";
 import {
   useController,
   UseControllerProps,
@@ -40,4 +40,4 @@ function FormInput({ label, name, type, min, max, rules, className }: Props) {
   );
 }
 
-export default FormInput;
+export default memo(FormInput);
