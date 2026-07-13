@@ -17,12 +17,13 @@
     inset: 0;
     padding: 0;
     border: none;
+    border-radius: inherit;
     background: none;
     cursor: pointer;
 
     &:focus-visible {
-      /* Negative offset so the ring isn't clipped by the card's overflow: hidden */
-      outline: 2px solid var(--color-primary-text);
+      /* Negative offset so the ring isn't clipped */
+      outline: 2px solid var(--color-primary);
       outline-offset: -2px;
     }
   }
