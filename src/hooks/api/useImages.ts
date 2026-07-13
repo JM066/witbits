@@ -3,10 +3,16 @@ import { getImages } from "@api/images";
 
 const DEFAULT_INITIAL_LIMIT = 10;
 
+/**
+ * Fetches the image feed using two requests at once: a small batch so the user
+ * sees something quickly, and the full set which takes over once it arrives.
+ * Because the API's response time is unpredictable, firing both means we show
+ * images as soon as either one comes back - usually much sooner than waiting
+ * for the full set alone.
+ */
 export function useImages({
   initialLimit = DEFAULT_INITIAL_LIMIT,
 }: { initialLimit?: number } = {}) {
-  // Use parallel queries for concurrent fetching.
   const full = useQuery({
     queryKey: ["images"],
     queryFn: ({ signal }) => getImages({ signal }),
@@ -17,10 +23,13 @@ export function useImages({
   const initial = useQuery({
     queryKey: ["images", { limit: initialLimit }],
     queryFn: ({ signal }) => getImages({ signal }, initialLimit),
-    // Only throw an error if the full set hasn't already come in.
+    // Unlike `full` above, this one can throw but only if the full set
+    // hasn't already arrived to cover for it.
     throwOnError: () => full.data === undefined,
   });
 
+  // Response times are random, so the full set can actually arrive before
+  // the small batch, even though it's bigger. Preferring `full` here works either way:
   const data = full.data ?? initial.data;
 
   return {

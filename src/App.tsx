@@ -44,6 +44,7 @@ const App = () => {
           </Card>
         ))}
       </CardList>
+      {/* Rendered conditionally by the parent: mounting opens it, unmounting closes it. */}
       {selectedImage && (
         <Dialog
           onClose={() => setSelectedId(null)}

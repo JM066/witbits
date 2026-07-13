@@ -1,54 +1,38 @@
 .dialog {
-  /* Padding lives on .content so backdrop-click detection (event.target === dialog)
-     never fires from clicks inside the visible panel. */
+  /* Padding lives on .content so backdrop-click detection never fires from clicks inside dialog padding */
   padding: 0;
   border: none;
   border-radius: 8px;
-  width: min(90vw, 30rem);
+  width: min(90vw, 48rem);
+  max-height: 85vh;
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
 
   &::backdrop {
     background: rgb(0 0 0 / 0.5);
   }
-}
 
-.content {
-  padding: 1.5rem;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.title {
-  margin: 0;
-  font-size: 1.125rem;
-}
-
-.close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: none;
-  border-radius: 8px;
-  background: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(0.95);
+  & .content {
+    padding: 1.5rem;
+    max-height: inherit;
+    overflow-y: auto;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--color-primary-text);
-    outline-offset: 2px;
+  & .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    margin-bottom: 1rem;
+
+    & .title {
+      margin: 0;
+      font-size: 1.125rem;
+      margin: 0;
+      font-size: 1.125rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }

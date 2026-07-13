@@ -10,13 +10,16 @@
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem;
   transition: filter 0.15s ease;
 
-  &:hover:not([aria-disabled]) {
+  &:hover:not(.disabled) {
     filter: brightness(0.95);
   }
-  &[aria-disabled] {
+
+  &.margin {
+    margin-top: 1rem;
+  }
+  &.disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
@@ -31,6 +34,10 @@
     color: var(--color-primary-text);
   }
 
+  &.secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
   & .spinner {
     width: 1em;
     height: 1em;

@@ -7,7 +7,7 @@ interface Props {
   className?: string;
   id?: string;
   onSelect?: (id: string) => void;
-  // Accessible name for the trigger; the overlay button has no visible text.
+  // Accessible name for the trigger
   selectLabel?: string;
 }
 

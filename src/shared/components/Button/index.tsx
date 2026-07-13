@@ -5,6 +5,7 @@ import styles from "./Button.module.css";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
   loading?: boolean;
+  margin?: boolean;
 }
 
 function Button({
@@ -13,6 +14,7 @@ function Button({
   type = "button",
   className,
   disabled = false,
+  margin,
   onClick,
   children,
   ...rest
@@ -31,7 +33,13 @@ function Button({
   return (
     <button
       type={type}
-      className={classNames(styles.button, styles[variant], className)}
+      className={classNames(
+        styles.button,
+        styles[variant],
+        margin && styles.margin,
+        { [styles.disabled]: isDisabled },
+        className,
+      )}
       aria-disabled={isDisabled || undefined}
       onClick={handleClick}
       {...rest}

@@ -5,7 +5,7 @@ type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">;
 
 function FormSubmit({ children, ...rest }: Props) {
   return (
-    <Button type="submit" {...rest}>
+    <Button type="submit" {...rest} margin>
       {children}
     </Button>
   );

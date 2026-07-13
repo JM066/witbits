@@ -1,12 +1,13 @@
 .header {
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 1rem;
   background-color: var(--color-primary);
   color: var(--color-primary-text);
   text-align: center;
 }
 
 .header a {
+  margin-top: 0.5rem;
   display: block;
   text-align: right;
   color: var(--color-primary-text);
