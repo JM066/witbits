@@ -13,8 +13,6 @@ import ErrorFallback from "@/shared/components/ErrorFallback";
 
 const IMAGE_LIMIT = 10;
 
-// The images query throws during Gallery's render (throwOnError), so the
-// boundary has to sit above the component that calls useImages.
 const Gallery = () => {
   const { data: images, isLoading } = useImages();
   const [selectedId, setSelectedId] = useState<string | null>(null);

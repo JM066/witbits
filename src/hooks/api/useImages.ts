@@ -3,13 +3,6 @@ import { getImages } from "@api/images";
 
 const DEFAULT_INITIAL_LIMIT = 10;
 
-/**
- * Fetches the image feed using two requests at once: a small batch so the user
- * sees something quickly, and the full set which takes over once it arrives.
- * Because the API's response time is unpredictable, firing both means we show
- * images as soon as either one comes back - usually much sooner than waiting
- * for the full set alone.
- */
 export function useImages({
   initialLimit = DEFAULT_INITIAL_LIMIT,
 }: { initialLimit?: number } = {}) {

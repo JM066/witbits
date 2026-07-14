@@ -102,7 +102,7 @@ describe("Profile", () => {
     expect(screen.getByLabelText("Salary (£0)")).toBeInTheDocument();
   });
 
-  it("updates the salary label as the slider moves", () => {
+  it("updates the salary label as the bar moves", () => {
     render(<Profile />);
 
     fireEvent.change(screen.getByLabelText("Salary (£0)"), {

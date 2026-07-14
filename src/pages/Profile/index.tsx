@@ -3,8 +3,6 @@ import SalaryInput, { SALARY_MIN } from "./SalaryInput";
 import { ProfileValues } from "./types";
 import styles from "./Profile.module.css";
 
-// Hoisted so the rules stay referentially stable - FormInput is memoized and
-// an inline object would defeat its props compare on every re-render.
 const REQUIRED_RULES = { required: true };
 const EMAIL_RULES = {
   required: true,

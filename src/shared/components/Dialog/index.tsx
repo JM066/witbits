@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import Button from "@/shared/components/Button";
 import styles from "./Dialog.module.css";
+import Text from "../Text";
 
 interface Props {
   onClose: () => void;
@@ -39,9 +40,7 @@ function Dialog({ onClose, title, children }: Props) {
     >
       <div className={styles.content}>
         <header className={styles.header}>
-          <h2 id={titleId} className={styles.title}>
-            {title}
-          </h2>
+          <Text as="h2" text={title} className={styles.title} />
           <Button
             variant="secondary"
             onClick={onClose}

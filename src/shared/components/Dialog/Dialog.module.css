@@ -26,10 +26,6 @@
     margin-bottom: 1rem;
 
     & .title {
-      margin: 0;
-      font-size: 1.125rem;
-      margin: 0;
-      font-size: 1.125rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

@@ -97,7 +97,7 @@ Components are written as pure functions of their props, so atomic components wi
 
 ### Approach: concurrent fetching
 
-The API has deliberately random latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with 10 min staletime.
+The API has deliberately random latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with 30 min staleTime.
 
 ### If I had more time
 
