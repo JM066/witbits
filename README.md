@@ -84,3 +84,17 @@ We appreciate that your time is valuable and recommend you not spend more than 2
 
 The goal of the test is to prove your understanding of the concepts of modern HTML/CSS/JS, but not to produce something production ready or pixel perfect.
 Your work will be tested in the browser of your choice, so please specify this when submitting. This can include pre-release browsers such as Chrome Canary or Safari Technology Preview if you want to work with experimental features.
+
+## Submission notes
+
+### Browser
+
+Tested in **Google Chrome (latest)**.
+
+### Approach: memoization policy
+
+Components are written as pure functions of their props, so atom components with primitive props (`Image`, `Content`, `Text`, `Button` ...) are wrapped in `memo`. Several of these don't pay off in the current task, but they're deliberate future-proofing.
+
+### Approach: concurrent fetching
+
+The API has deliberately random latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with 10 min staletime.
