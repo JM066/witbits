@@ -19,7 +19,9 @@ type Props = {
 function FormInput({ label, name, type, min, max, rules, className }: Props) {
   const { control } = useFormMethods();
   // Controlled via useController so each field subscribes to form state itself.
-  const { field } = useController({ control, name, rules });
+  const {
+    field: { ref, ...field },
+  } = useController({ control, name, rules });
   const isNumeric = type === "range" || type === "number";
 
   return (
@@ -30,7 +32,7 @@ function FormInput({ label, name, type, min, max, rules, className }: Props) {
       max={max}
       className={className}
       name={field.name}
-      ref={field.ref}
+      ref={ref}
       value={field.value ?? ""}
       onBlur={field.onBlur}
       onChange={(e) =>
