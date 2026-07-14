@@ -14,8 +14,10 @@ function Content({ description, name, className, location }: Props) {
   return (
     <div className={classNames(styles.content, className)}>
       <Text className={styles.description} text={description} />
-      <Text text={name} />
-      <Text variant="secondary" text={location} />
+      <>
+        <Text text={name} />
+        <Text variant="secondary" text={location} />
+      </>
     </div>
   );
 }

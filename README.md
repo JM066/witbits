@@ -93,8 +93,12 @@ Tested in **Google Chrome (latest)**.
 
 ### Approach: memoization policy
 
-Components are written as pure functions of their props, so atom components with primitive props (`Image`, `Content`, `Text`, `Button` ...) are wrapped in `memo`. Several of these don't pay off in the current task, but they're deliberate future-proofing.
+Components are written as pure functions of their props, so atomic components with primitive props (`Image`, `Content`, `Text`, `Button` ...) are wrapped in `memo`. Several of these don't pay off in the current task, but they're deliberate future-proofing.
 
 ### Approach: concurrent fetching
 
 The API has deliberately random latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with 10 min staletime.
+
+### If I had more time
+
+The card content styling isn't perfect yet. I'd polish that first, and add more test cases using per-test MSW request handlers to cover API edge cases and the dialog flow. As a future feature, I'd add an image filter that keeps its state in the URL query params, so filtered views are shareable.
