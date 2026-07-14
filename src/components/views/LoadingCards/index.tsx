@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Card from "@/components/views/Card";
+import Card from "@/shared/components/Card";
 import Skeleton from "@/shared/components/Skeleton";
 import styles from "./LoadingCards.module.css";
 

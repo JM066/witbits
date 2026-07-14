@@ -3,6 +3,14 @@ import SalaryInput, { SALARY_MIN } from "./SalaryInput";
 import { ProfileValues } from "./types";
 import styles from "./Profile.module.css";
 
+// Hoisted so the rules stay referentially stable - FormInput is memoized and
+// an inline object would defeat its props compare on every re-render.
+const REQUIRED_RULES = { required: true };
+const EMAIL_RULES = {
+  required: true,
+  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+};
+
 const Profile = () => (
   <FormGroup<ProfileValues>
     className={styles.form}
@@ -18,17 +26,14 @@ const Profile = () => (
     }}
     resetOnSubmit
   >
-    <FormGroup.Input name="name" label="Name" rules={{ required: true }} />
+    <FormGroup.Input name="name" label="Name" rules={REQUIRED_RULES} />
     <FormGroup.Error name="name" message="Name is required" />
 
     <FormGroup.Input
       name="email"
       label="Email"
       type="email"
-      rules={{
-        required: true,
-        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      }}
+      rules={EMAIL_RULES}
     />
     <FormGroup.Error name="email" message="A valid email is required" />
 
@@ -36,14 +41,14 @@ const Profile = () => (
       name="dateOfBirth"
       label="Date of birth"
       type="date"
-      rules={{ required: true }}
+      rules={REQUIRED_RULES}
     />
     <FormGroup.Error name="dateOfBirth" message="Date of birth is required" />
 
     <FormGroup.Input
       name="favouriteColour"
       label="Favourite colour"
-      rules={{ required: true }}
+      rules={REQUIRED_RULES}
     />
     <FormGroup.Error
       name="favouriteColour"

@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import classNames from "classnames";
 import styles from "./Card.module.css";
 
@@ -27,4 +27,4 @@ function Card({ children, className, id, onSelect, selectLabel }: Props) {
   );
 }
 
-export default memo(Card);
+export default Card;

@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import classNames from "classnames";
 import styles from "./CardList.module.css";
 
@@ -11,4 +11,4 @@ function CardList({ children, className }: Props) {
   return <ul className={classNames(styles.list, className)}>{children}</ul>;
 }
 
-export default memo(CardList);
+export default CardList;

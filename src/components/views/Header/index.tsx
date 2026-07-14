@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import classNames from "classnames";
 import styles from "./Header.module.css";
 
@@ -13,4 +13,4 @@ function Header({ children, className }: Props) {
   );
 }
 
-export default memo(Header);
+export default Header;
