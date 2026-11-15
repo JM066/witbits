@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  /* .trigger overlay context parent */
+  position: relative;
+}
+
+.trigger {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  &:focus-visible {
+    /* Negative offset so the ring isn't clipped by the card's overflow */
+    outline: 2px solid var(--mui-palette-primary-main);
+    outline-offset: -2px;
+  }
+}

@@ -1,0 +1,10 @@
+/* Colours, fonts, box-sizing and body reset come from the MUI theme and CssBaseline (src/theme.ts). */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}

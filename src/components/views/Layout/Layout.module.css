@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.toolbar {
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.main {
+  flex: 1;
+  padding-block: 1rem;
+}
