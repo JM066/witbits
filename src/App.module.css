@@ -1,4 +1,17 @@
-.toolbar {
-  display: flex;
-  justify-content: flex-end;
+@reference "./index.css";
+
+.hero {
+  @apply flex flex-col gap-4 py-10 sm:py-14;
+}
+
+.headline {
+  @apply max-w-3xl;
+}
+
+.lead {
+  @apply max-w-xl;
+}
+
+.empty {
+  @apply py-16;
 }

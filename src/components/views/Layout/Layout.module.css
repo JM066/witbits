@@ -1,20 +1,25 @@
+@reference "../../../index.css";
+
 .container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-}
-
-.toolbar {
-  gap: 1rem;
-  padding-block: 1rem;
-}
-
-.title {
-  flex: 1;
-  font-weight: 600;
+  @apply flex min-h-dvh flex-col;
 }
 
 .main {
-  flex: 1;
-  padding-block: 1rem;
+  @apply mx-auto w-full max-w-6xl flex-1 px-4 pb-16 sm:px-6;
+}
+
+.brand {
+  @apply flex min-w-0 flex-col sm:flex-row sm:items-center sm:gap-3;
+}
+
+.logo {
+  @apply inline-flex w-fit shrink-0 items-baseline text-xl font-extrabold tracking-tight text-dark;
+}
+
+.dot {
+  @apply ml-0.5 inline-block size-2 rounded-full bg-accent;
+}
+
+.tagline {
+  @apply leading-tight sm:border-l sm:border-border sm:pl-3 sm:text-sm;
 }

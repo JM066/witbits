@@ -1,13 +1,5 @@
-.list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  width: 100%;
-  padding: 0;
-  margin: 1rem 0 0;
-  list-style: none;
+@reference "../../../index.css";
 
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+.list {
+  @apply m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-6 p-0;
 }

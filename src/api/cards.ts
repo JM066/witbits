@@ -3,10 +3,10 @@ import { supabase } from "@/lib/supabase";
 const CARD_COLUMNS =
   "id, title, created_at, updated_at, description, alt_description, categories, likes, url";
 
-export async function getImages(
+export async function getCards(
   { signal }: { signal?: AbortSignal },
   limit?: number,
-): Promise<Image[]> {
+): Promise<EventCard[]> {
   let query = supabase
     .from("cards")
     .select(CARD_COLUMNS)
@@ -25,7 +25,7 @@ export async function getImages(
   const { data, error } = await query;
 
   if (error) {
-    throw new Error(`Failed to fetch images: ${error.message}`);
+    throw new Error(`Failed to fetch cards: ${error.message}`);
   }
 
   return data;

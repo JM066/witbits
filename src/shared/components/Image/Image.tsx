@@ -1,37 +1,31 @@
 import { memo, useState } from "react";
 import classNames from "classnames";
-import Skeleton from "@mui/material/Skeleton";
-import Typography from "@mui/material/Typography";
 import styles from "./Image.module.css";
+import Skeleton from "@/shared/components/Skeleton";
+import Text from "@/shared/components/Text";
 
 interface Props {
   src: string;
   alt: string;
+  // cover fills the frame (cropping edges); contain shows the whole image.
+  fit?: "cover" | "contain";
   className?: string;
 }
 
-function Image({ src, alt, className }: Props) {
+function Image({ src, alt, fit = "cover", className }: Props) {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(
     "loading",
   );
 
   return (
-    <div className={classNames(styles.image, className)}>
-      {status === "loading" && (
-        <Skeleton
-          variant="rectangular"
-          className={styles.placeholder}
-          aria-hidden="true"
-        />
-      )}
+    <div className={classNames(styles.image, styles[fit], className)}>
+      {status === "loading" && <Skeleton className={styles.placeholder} />}
       {status === "error" ? (
-        <Typography
-          variant="body2"
-          color="text.secondary"
+        <Text
+          text="Image unavailable"
+          variant="muted"
           className={styles.fallback}
-        >
-          Image unavailable
-        </Typography>
+        />
       ) : (
         <img
           src={src}

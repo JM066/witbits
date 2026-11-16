@@ -1,7 +1,6 @@
-import { memo, useId } from "react";
-import { useController } from "react-hook-form";
-import Slider from "@mui/material/Slider";
-import Typography from "@mui/material/Typography";
+import { memo } from "react";
+import { useWatch } from "react-hook-form";
+import FormGroup from "@/shared/components/FormGroup";
 import useFormMethods from "@/shared/components/FormGroup/useFormMethods";
 import { ProfileValues } from "./types";
 
@@ -16,27 +15,18 @@ const SALARY_RULES = {
 
 const SalaryInput = ({ className }: { className?: string }) => {
   const { control } = useFormMethods<ProfileValues>();
-  const labelId = useId();
-  const {
-    field: { ref, value, onChange, onBlur, name },
-  } = useController({ control, name: "salary", rules: SALARY_RULES });
+  const salary = useWatch({ control, name: "salary" });
 
   return (
-    <div className={className}>
-      <Typography id={labelId} gutterBottom>
-        {`Salary (£${value})`}
-      </Typography>
-      <Slider
-        ref={ref}
-        name={name}
-        value={value}
-        min={SALARY_MIN}
-        max={SALARY_MAX}
-        onChange={(_, next) => onChange(next as number)}
-        onBlur={onBlur}
-        aria-labelledby={labelId}
-      />
-    </div>
+    <FormGroup.Input
+      name="salary"
+      label={`Salary (£${salary})`}
+      type="range"
+      min={SALARY_MIN}
+      max={SALARY_MAX}
+      rules={SALARY_RULES}
+      className={className}
+    />
   );
 };
 

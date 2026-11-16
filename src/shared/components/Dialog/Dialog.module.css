@@ -1,14 +1,23 @@
+@reference "../../../index.css";
+
+/* Padding lives on .content so backdrop-click detection never fires from clicks inside dialog padding.
+   m-auto restores the native centring that preflight's margin reset removes. */
+.dialog {
+  @apply m-auto max-h-[85vh] w-[min(90vw,48rem)] rounded-lg border-none p-0 shadow-xl;
+}
+
+.dialog::backdrop {
+  @apply bg-black/50;
+}
+
+.content {
+  @apply max-h-[inherit] overflow-y-auto p-6;
+}
+
 .header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-right: 0.75rem;
+  @apply mb-4 flex min-h-11 items-center justify-between gap-4;
 }
 
 .title {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @apply truncate;
 }

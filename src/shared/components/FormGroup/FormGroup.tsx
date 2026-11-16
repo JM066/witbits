@@ -8,6 +8,7 @@ import {
 import Form from "../Form";
 import { FormProvider } from "./FormContext";
 import FormInput from "./FormInput";
+import FormError from "./FormError";
 import FormSubmit from "./FormSubmit";
 
 interface Props<TFormValues extends FieldValues> {
@@ -44,6 +45,7 @@ function FormGroup<TFormValues extends FieldValues>({
 }
 
 FormGroup.Input = FormInput;
+FormGroup.Error = FormError;
 FormGroup.Submit = FormSubmit;
 
 export default FormGroup;

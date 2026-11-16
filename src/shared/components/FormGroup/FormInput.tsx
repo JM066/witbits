@@ -1,61 +1,43 @@
-import { memo } from "react";
+import { memo, InputHTMLAttributes } from "react";
 import {
   useController,
   UseControllerProps,
   FieldValues,
 } from "react-hook-form";
-import TextField, { type TextFieldProps } from "@mui/material/TextField";
 import useFormMethods from "./useFormMethods";
+import Input from "@/shared/components/Input";
 
 type Props = {
   name: string;
   label: string;
   rules?: UseControllerProps<FieldValues>["rules"];
-  // Shown under the field when validation fails.
-  errorMessage?: string;
-} & Pick<TextFieldProps, "type" | "className">;
+} & Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  "type" | "min" | "max" | "className"
+>;
 
-function FormInput({
-  label,
-  name,
-  type,
-  rules,
-  errorMessage,
-  className,
-}: Props) {
+function FormInput({ label, name, type, min, max, rules, className }: Props) {
   const { control } = useFormMethods();
   // Controlled via useController so each field subscribes to form state itself.
   const {
     field: { ref, ...field },
-    fieldState: { invalid },
   } = useController({ control, name, rules });
+  const isNumeric = type === "range" || type === "number";
 
   return (
-    <TextField
-      id={name}
-      name={field.name}
-      inputRef={ref}
+    <Input
       label={label}
       type={type}
+      min={min}
+      max={max}
+      className={className}
+      name={field.name}
+      ref={ref}
       value={field.value ?? ""}
       onBlur={field.onBlur}
       onChange={(e) =>
-        field.onChange(
-          type === "number"
-            ? (e.target as HTMLInputElement).valueAsNumber
-            : e.target.value,
-        )
+        field.onChange(isNumeric ? e.target.valueAsNumber : e.target.value)
       }
-      error={invalid}
-      // A single space keeps the row height stable so the form doesn't jump when an error appears.
-      helperText={invalid ? errorMessage : " "}
-      fullWidth
-      className={className}
-      slotProps={{
-        // Date inputs always render a placeholder, so the label must sit above it.
-        inputLabel: type === "date" ? { shrink: true } : undefined,
-        formHelperText: invalid ? { role: "alert" } : undefined,
-      }}
     />
   );
 }

@@ -1,14 +1,9 @@
+@reference "../../../index.css";
+
 .error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  min-height: 40vh;
-  padding: 2rem 1rem;
-  text-align: center;
+  @apply flex min-h-[40vh] flex-col items-center justify-center gap-1 px-4 py-8 text-center;
 }
 
 .button {
-  margin-top: 1.25rem;
+  @apply mt-5;
 }

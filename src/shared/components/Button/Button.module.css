@@ -1,0 +1,34 @@
+@reference "../../../index.css";
+
+.button {
+  @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2
+         rounded-lg px-5 py-2 font-semibold transition-[filter] duration-150;
+}
+
+.button:not(.disabled) {
+  @apply hover:brightness-95;
+}
+
+.button:focus-visible {
+  @apply outline-2 outline-offset-2 outline-dark;
+}
+
+.button.primary {
+  @apply bg-primary text-dark;
+}
+
+.button.secondary {
+  @apply bg-surface text-dark;
+}
+
+.button.margin {
+  @apply mt-4;
+}
+
+.button.disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+.spinner {
+  @apply size-[1em] animate-spin rounded-full border-2 border-current border-r-transparent;
+}

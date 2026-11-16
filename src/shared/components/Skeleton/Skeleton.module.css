@@ -1,0 +1,5 @@
+@reference "../../../index.css";
+
+.skeleton {
+  @apply block w-full animate-pulse rounded-sm bg-border;
+}

@@ -24,37 +24,36 @@ const Profile = () => (
     }}
     resetOnSubmit
   >
-    <FormGroup.Input
-      name="name"
-      label="Name"
-      rules={REQUIRED_RULES}
-      errorMessage="Name is required"
-    />
+    <FormGroup.Input name="name" label="Name" rules={REQUIRED_RULES} />
+    <FormGroup.Error name="name" message="Name is required" />
 
     <FormGroup.Input
       name="email"
       label="Email"
       type="email"
       rules={EMAIL_RULES}
-      errorMessage="A valid email is required"
     />
+    <FormGroup.Error name="email" message="A valid email is required" />
 
     <FormGroup.Input
       name="dateOfBirth"
       label="Date of birth"
       type="date"
       rules={REQUIRED_RULES}
-      errorMessage="Date of birth is required"
     />
+    <FormGroup.Error name="dateOfBirth" message="Date of birth is required" />
 
     <FormGroup.Input
       name="favouriteColour"
       label="Favourite colour"
       rules={REQUIRED_RULES}
-      errorMessage="Favourite colour is required"
+    />
+    <FormGroup.Error
+      name="favouriteColour"
+      message="Favourite colour is required"
     />
 
-    <SalaryInput />
+    <SalaryInput className={styles.range} />
 
     <FormGroup.Submit>Save profile</FormGroup.Submit>
   </FormGroup>

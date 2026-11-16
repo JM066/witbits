@@ -3,8 +3,6 @@ import { Routes, Route } from "react-router";
 import App from "./App";
 import Layout from "@/components/views/Layout";
 
-// Loaded on first visit to /profile, so the form code (react-hook-form, TextField, Slider)
-// stays out of the gallery's initial download.
 const Profile = lazy(() => import("./pages/Profile"));
 
 const AppRoutes = () => (

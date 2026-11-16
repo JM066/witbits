@@ -1,0 +1,11 @@
+@reference "../../../index.css";
+
+/* Slim sticky bar; translucent so cards scrolling underneath stay visible. */
+.header {
+  @apply sticky top-0 z-10 w-full border-b border-border bg-surface/80 backdrop-blur-md;
+}
+
+/* Same max width and gutter as Layout's .main so the logo lines up with the content. */
+.inner {
+  @apply mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6;
+}

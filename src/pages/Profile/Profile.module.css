@@ -1,7 +1,10 @@
+@reference "../../index.css";
+
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: 24rem;
-  margin: 2rem auto;
+  @apply mx-auto my-8 flex max-w-sm flex-col px-4;
+}
+
+/* Scoped under .form so it beats Input's own padding on the same element. */
+.form .range {
+  @apply p-0;
 }

@@ -1,11 +1,11 @@
-import { memo } from "react";
-import Button, { type ButtonProps } from "@mui/material/Button";
+import { memo, type ButtonHTMLAttributes } from "react";
+import Button from "../Button";
 
-type Props = Omit<ButtonProps, "type">;
+type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">;
 
 function FormSubmit({ children, ...rest }: Props) {
   return (
-    <Button type="submit" variant="contained" size="large" {...rest}>
+    <Button type="submit" {...rest} margin>
       {children}
     </Button>
   );

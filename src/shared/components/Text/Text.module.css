@@ -1,0 +1,65 @@
+@reference "../../../index.css";
+
+/* In the components layer so any className passed to Text (unlayered module CSS)
+   overrides these without needing extra specificity. */
+@layer components {
+  .text {
+    @apply m-0;
+  }
+
+  /* Variants: colour */
+  .primary {
+    @apply text-dark;
+  }
+
+  .secondary {
+    @apply text-subtle;
+  }
+
+  .muted {
+    @apply text-muted;
+  }
+
+  .error {
+    @apply text-error;
+  }
+
+  /* Sizes. `body` has no rule: it inherits the surrounding size. */
+  .display {
+    @apply text-4xl leading-[1.1] font-extrabold tracking-tight text-balance sm:text-5xl;
+  }
+
+  .title {
+    @apply text-2xl font-bold;
+  }
+
+  .heading {
+    @apply text-lg leading-snug font-semibold;
+  }
+
+  .lead {
+    @apply text-lg;
+  }
+
+  .caption {
+    @apply text-xs;
+  }
+
+  /* Alignment */
+  .start {
+    @apply text-start;
+  }
+
+  .center {
+    @apply text-center;
+  }
+
+  .end {
+    @apply text-end;
+  }
+
+  /* Marker-pen highlight; box-decoration-clone keeps it on every line when it wraps. */
+  .highlight {
+    @apply box-decoration-clone bg-linear-to-b from-transparent from-60% to-primary to-60% px-1;
+  }
+}

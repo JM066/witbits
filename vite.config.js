@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     port: 3000,
   },
@@ -18,11 +19,6 @@ export default defineConfig({
               name: "react",
               test: /node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/,
               priority: 30,
-            },
-            {
-              name: "mui",
-              test: /node_modules[\\/](@mui|@emotion|@popperjs|react-transition-group|stylis)[\\/]/,
-              priority: 20,
             },
             {
               name: "supabase",

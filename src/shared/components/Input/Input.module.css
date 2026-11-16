@@ -1,0 +1,13 @@
+@reference "../../../index.css";
+
+.wrapper {
+  @apply flex flex-col gap-2;
+}
+
+.label {
+  @apply mt-3 font-semibold;
+}
+
+.input {
+  @apply rounded-sm border border-border p-2 text-base;
+}

@@ -1,10 +1,45 @@
-/* Colours, fonts, box-sizing and body reset come from the MUI theme and CssBaseline (src/theme.ts). */
+@import "tailwindcss";
+
+/* CSS Modules hash @keyframes names, so animations used via @apply in a module would point at
+   keyframes that don't exist. Generating them here keeps the global `spin`/`pulse` keyframes. */
+@source inline("animate-spin animate-pulse");
+
+@theme {
+  --color-primary: #ffe14c;
+  --color-dark: #242424;
+  --color-subtle: #484545;
+  --color-muted: #8e8e8e;
+  --color-border: #e4e4e4;
+  --color-surface: #ffffff;
+  --color-background: #f9f9f8;
+  --color-error: #e23623;
+  --color-accent: #ff4f79;
+
+  --font-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+}
+
+/* Box-sizing and the body reset come from Tailwind's preflight.
+   In the base layer so any CSS Module class overrides these defaults. */
+@layer base {
+  body {
+    @apply bg-background font-sans text-dark;
+  }
+
+  /* Preflight strips heading styles; components set the size. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-dark;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
 
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  clip-path: inset(50%);
+  @apply sr-only;
 }

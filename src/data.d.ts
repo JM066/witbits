@@ -1,4 +1,4 @@
-interface Image {
+interface EventCard {
   id: string;
   title: string;
   created_at: string;

@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { getImages } from "@api/images";
+import { getCards } from "@api/cards";
 
 const DEFAULT_INITIAL_LIMIT = 10;
 
-export function useImages({
+export function useCards({
   initialLimit = DEFAULT_INITIAL_LIMIT,
 }: { initialLimit?: number } = {}) {
   const full = useQuery({
-    queryKey: ["images"],
-    queryFn: ({ signal }) => getImages({ signal }),
+    queryKey: ["cards"],
+    queryFn: ({ signal }) => getCards({ signal }),
     // A failed background refresh shouldn't crash a page that's already showing the initial batch.
     throwOnError: false,
   });
 
   const initial = useQuery({
-    queryKey: ["images", { limit: initialLimit }],
-    queryFn: ({ signal }) => getImages({ signal }, initialLimit),
+    queryKey: ["cards", { limit: initialLimit }],
+    queryFn: ({ signal }) => getCards({ signal }, initialLimit),
     // Unlike `full` above, this one can throw but only if the full set
     // hasn't already arrived to cover for it.
     throwOnError: () => full.isError,

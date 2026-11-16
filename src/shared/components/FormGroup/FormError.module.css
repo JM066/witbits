@@ -1,0 +1,5 @@
+@reference "../../../index.css";
+
+.error {
+  @apply min-h-[1lh];
+}

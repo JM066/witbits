@@ -1,13 +1,31 @@
+@reference "../../../index.css";
+
+/* Mirrors Card + Content so the grid doesn't jump when real cards arrive. */
 .image {
-  aspect-ratio: 4 / 3;
-  flex: 0 0 40%;
-  height: auto;
+  @apply aspect-3/2;
 }
 
 .content {
-  flex: 1;
+  @apply flex flex-1 flex-col gap-2 p-4;
 }
 
-.lineShort {
-  width: 60%;
+.line {
+  @apply h-4;
+}
+
+/* Two classes so they beat Skeleton's own w-full / h. */
+.line.title {
+  @apply h-5 w-3/4;
+}
+
+.line.lineShort {
+  @apply w-2/5;
+}
+
+.tags {
+  @apply mt-3 flex gap-1.5;
+}
+
+.tag.line {
+  @apply h-5 w-14 rounded-full;
 }

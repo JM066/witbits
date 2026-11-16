@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
 import { server, http, HttpResponse, delay } from "./test/mocks/server";
-import imagesData from "../public/images.json";
+import cardsData from "../public/images.json";
 
 const CARDS_URL = "http://supabase.test/rest/v1/cards";
 
@@ -21,7 +21,7 @@ const renderApp = () => {
 };
 
 describe("App image list", () => {
-  it("announces the loading state while images are being fetched", () => {
+  it("announces the loading state while cards are being fetched", () => {
     server.use(
       http.get(CARDS_URL, async () => {
         await delay("infinite");
@@ -30,7 +30,7 @@ describe("App image list", () => {
     //clean up
     renderApp();
 
-    expect(screen.getByRole("status")).toHaveTextContent("Loading images…");
+    expect(screen.getByRole("status")).toHaveTextContent("Loading cards…");
   });
 
   it("shows the error fallback when the API fails", async () => {
@@ -42,19 +42,19 @@ describe("App image list", () => {
 
     const alert = await screen.findByRole("alert");
     expect(
-      within(alert).getByText("Failed to load images."),
+      within(alert).getByText("Failed to load cards."),
     ).toBeInTheDocument();
     expect(screen.queryByRole("status")).not.toBeInTheDocument();
   });
 
-  it("recovers and renders the images when Retry is clicked", async () => {
+  it("recovers and renders the cards when Retry is clicked", async () => {
     const user = userEvent.setup();
     let shouldFail = true;
-    const images = imagesData.slice(0, 1);
+    const cards = cardsData.slice(0, 1);
     server.use(
       http.get(CARDS_URL, () => {
         if (shouldFail) return new HttpResponse(null, { status: 500 });
-        return HttpResponse.json(images);
+        return HttpResponse.json(cards);
       }),
     );
 
@@ -65,7 +65,7 @@ describe("App image list", () => {
     await user.click(within(alert).getByRole("button", { name: "Retry" }));
 
     expect(
-      await screen.findByAltText(images[0].alt_description),
+      await screen.findByAltText(cards[0].alt_description),
     ).toBeInTheDocument();
   });
 });

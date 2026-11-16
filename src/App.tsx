@@ -1,4 +1,4 @@
-import { useImages } from "@/hooks/api/useImages";
+import { useCards } from "@/hooks/api/useCards";
 import Image from "@/shared/components/Image";
 import Content from "@/components/views/Content";
 import Card from "@/shared/components/Card";
@@ -9,91 +9,86 @@ import Dialog from "@/shared/components/Dialog";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import ErrorFallback from "@/shared/components/ErrorFallback";
-import ToggleButton from "@mui/material/ToggleButton";
-import Typography from "@mui/material/Typography";
+import Text from "@/shared/components/Text";
 import styles from "./App.module.css";
 
-const IMAGE_LIMIT = 10;
+// Size of the first batch, and how many placeholder cards show while it loads.
+const INITIAL_CARD_COUNT = 10;
 
-const Gallery = () => {
-  const { data: images = [], isLoading } = useImages();
+const CardCatalog = () => {
+  const { data: cards = [], isLoading } = useCards({
+    initialLimit: INITIAL_CARD_COUNT,
+  });
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [sortByLikes, setSortByLikes] = useState<boolean>(false);
 
-  // Deliberate linear lookup: one scan per render over a small list beats
-  // maintaining an {[id]: image} map. Revisit only if by-id reads multiply.
-  const selectedImage = useMemo(
-    () => images?.find((image) => image.id === selectedId),
-    [images, selectedId],
+  const selectedCard = useMemo(
+    () => cards.find((card) => card.id === selectedId),
+    [cards, selectedId],
   );
-  const sortedImages = useMemo(
-    () => [...images].sort((a, b) => b.likes - a.likes),
-    [images],
-  );
-
-  const displayedImages = sortByLikes ? sortedImages : images;
-
-  const toggleSort = () => {
-    setSortByLikes((prev) => !prev);
-  };
 
   const closeDialog = useCallback(() => setSelectedId(null), []);
 
-  const cards = useMemo(
+  const cardItems = useMemo(
     () =>
-      displayedImages.map((image) => (
+      cards.map((card) => (
         <Card
-          key={image.id}
-          id={image.id}
+          key={card.id}
+          id={card.id}
           onSelect={setSelectedId}
-          selectLabel={image.title}
+          selectLabel={card.title}
         >
-          <Image src={image.url} alt={image.alt_description ?? "Event card"} />
+          <Image src={card.url} alt={card.alt_description ?? "Event card"} />
           <Content
-            title={image.title}
-            description={image.description ?? ""}
-            categories={image.categories.join(", ")}
-            likes={image.likes}
+            title={card.title}
+            description={card.description ?? ""}
+            categories={card.categories}
+            likes={card.likes}
           />
         </Card>
       )),
-    [displayedImages],
+    [cards],
   );
 
   return (
     <>
-      <div className={styles.toolbar}>
-        {/* ToggleButton sets aria-pressed from `selected` */}
-        <ToggleButton
-          value="likes"
-          selected={sortByLikes}
-          onChange={toggleSort}
-          color="primary"
-          size="small"
-        >
-          Sort by most liked
-        </ToggleButton>
-      </div>
+      <section className={styles.hero}>
+        <Text
+          as="h1"
+          size="display"
+          className={styles.headline}
+          text="Cards for every occasion."
+          highlight="Even the awkward ones."
+        />
+        <Text
+          variant="secondary"
+          size="lead"
+          className={styles.lead}
+          text="Birthdays, holidays, and everything in between. Pick a card, make someone smile."
+        />
+      </section>
       {isLoading && (
         <p role="status" className="visually-hidden">
-          Loading images…
+          Loading cards…
         </p>
       )}
-      {!isLoading && images?.length === 0 && (
-        <Typography align="center" color="text.secondary">
-          No images found.
-        </Typography>
+      {!isLoading && cards.length === 0 && (
+        <Text
+          text="No cards yet. Check back soon!"
+          align="center"
+          variant="muted"
+          className={styles.empty}
+        />
       )}
       <CardList>
-        {isLoading && <LoadingCards count={IMAGE_LIMIT} />}
-        {cards}
+        {isLoading && <LoadingCards count={INITIAL_CARD_COUNT} />}
+        {cardItems}
       </CardList>
-      {/* Rendered conditionally by the parent: mounting opens it, unmounting closes it. */}
-      {selectedImage && (
-        <Dialog onClose={closeDialog} title={selectedImage.title}>
+      {selectedCard && (
+        <Dialog onClose={closeDialog} title={selectedCard.title}>
           <Image
-            src={selectedImage.url}
-            alt={selectedImage.alt_description ?? "Event card"}
+            fit="contain"
+            src={selectedCard.url}
+            alt={selectedCard.alt_description ?? "Event card"}
           />
         </Dialog>
       )}
@@ -106,7 +101,7 @@ const App = () => {
 
   return (
     <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
-      <Gallery />
+      <CardCatalog />
     </ErrorBoundary>
   );
 };

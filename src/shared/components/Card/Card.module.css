@@ -1,19 +1,24 @@
+@reference "../../../index.css";
+
 .card {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  /* .trigger overlay context parent */
-  position: relative;
+  @apply relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface
+         shadow-xs transition duration-200 ease-out;
+}
+
+/* Lift and a slight tilt on hover, alternating direction so the grid feels playful.
+   motion-safe: skipped for users who prefer reduced motion. */
+.card:has(.trigger) {
+  @apply hover:shadow-lg motion-safe:hover:-translate-y-1 motion-safe:hover:-rotate-[0.6deg];
+}
+
+.card:has(.trigger):nth-child(even) {
+  @apply motion-safe:hover:rotate-[0.6deg];
 }
 
 .trigger {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  @apply absolute inset-0 cursor-pointer rounded-[inherit] border-none bg-transparent p-0;
+}
 
-  &:focus-visible {
-    /* Negative offset so the ring isn't clipped by the card's overflow */
-    outline: 2px solid var(--mui-palette-primary-main);
-    outline-offset: -2px;
-  }
+.trigger:focus-visible {
+  @apply outline-2 -outline-offset-2 outline-dark;
 }
