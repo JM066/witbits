@@ -1,104 +1,29 @@
-# Motorway UI Test
+# Witbits
 
-Welcome to the Motorway UI technical test. This test focuses on user experience, and your skills with HTML, CSS, a11y and leveraging browser APIs.
+An image gallery and form app built with Vite, React 19 and TypeScript (React Router, TanStack Query, react-hook-form). A small Express server serves the JSON image feed.
 
-## Set up
+## Getting started
 
-This repo is a vite app and an Express server which serves a JSON feed of images.
+```sh
+npm ci
+npm run dev:all   # runs the Express server and the Vite app together
+```
 
-- Clone the repo and run `npm ci`
-- Then run `npm run dev:all` so both the server and vite app run concurrently.
+## Scripts
 
-### Note
-
-- The vite client app uses proxy to serve images from the server. You can therefore simply fetch for `/images` and the server will return a JSON object with the image URLs.
-
-- Feel free to modify or install whatever code you feel is necessary. If installing packages which are wrappers for native browsers APIs please leave a comment explaining why.
-
-## Expected Deliverables
-
-For this test, you should provide:
-
-1. An image gallery UI with the features you've implemented
-1. A form with the specified fields
-1. A brief explanation of your approach and any decisions you made (can be included as comments in your code)
-1. Performance and UX considerations
-
-## Evaluation Criteria
-
-Your submission will be evaluated based on:
-
-- Code quality and organization
-- UI/UX design and responsiveness
-- Performance considerations
-- Form implementation
-- Accessibility considerations
-- Creativity in presenting and manipulating images
-- Testing and error handling
-
-## Submission
-
-Please submit your completed test by either:
-
-- Sharing a GitHub repository with your code
-- Creating a zip file of your project and sending it to us
-
-## Tasks
-
-### 1. UI development
-
-Create a responsive UI to display the images fetched from locally served API.
-
-The aim is to demonstrate your experience and knowledge of HTML, CSS, JS, data fetching and React features; and demonstrate creative thinking in how images can be presented and manipulated.
-
-Images aren't optimised and their dimensions are varied, there are .jpg and .webp versions on s3, so you will need to take this into account.
-
-#### Some ideas to get you started
-
-- Resizable thumbnails
-- Modal to review full size images
-- Image effects or filters
-- Lazy loading
-
-### 2. Performance
-
-The API that is returning images is deliberately randomly slow to mimic the varied latency of real world Internet. What can you do to mitigate the effects of this for the users? Think as broadly as possible, and consider the whole user experience. You own both the client and the server, so you can make changes to either.
-
-### 3. Forms
-
-One of the oldest yet trickiest parts of web development is forms, so we’d like to see how you handle them.
-
-Add a form to your app with the following fields. The form doesn't need to submit to anywhere, but must validate on the client.
-
-- [ ] Name
-- [ ] Email
-- [ ] Date of birth
-- [ ] Favourite colour
-- [ ] Salary (using a range input)
-
-## Time allowed
-
-We appreciate that your time is valuable and recommend you not spend more than 2-3 hours on these tasks.
+- `npm run dev` – start the Vite dev server
+- `npm run serve` – start the Express image server
+- `npm test` – run tests (Vitest)
+- `npm run type-check` – TypeScript check
+- `npm run lint` – ESLint
+- `npm run build` – production build
 
 ## Notes
 
-The goal of the test is to prove your understanding of the concepts of modern HTML/CSS/JS, but not to produce something production ready or pixel perfect.
-Your work will be tested in the browser of your choice, so please specify this when submitting. This can include pre-release browsers such as Chrome Canary or Safari Technology Preview if you want to work with experimental features.
+### Memoization
 
-## Submission notes
+Components are written as pure functions of their props, so atomic components with primitive props (`Image`, `Content`, `Text`, `Button` ...) are wrapped in `memo`.
 
-### Browser
+### Concurrent fetching
 
-Tested in **Google Chrome (latest)**.
-
-### Approach: memoization policy
-
-Components are written as pure functions of their props, so atomic components with primitive props (`Image`, `Content`, `Text`, `Button` ...) are wrapped in `memo`. Several of these don't pay off in the current task, but they're deliberate future-proofing.
-
-### Approach: concurrent fetching
-
-The API has deliberately random latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with 30 min staleTime.
-
-### If I had more time
-
-The card content styling isn't perfect yet. I'd polish that first, and add more test cases using per-test MSW request handlers to cover API edge cases and the dialog flow. As a future feature, I'd add an image filter that keeps its state in the URL query params, so filtered views are shareable.
+The image API has variable latency, so `useImages` fires two requests at once: a small initial batch and the full set. Whichever resolves first is shown. React Query caches both with a 30 min staleTime.
