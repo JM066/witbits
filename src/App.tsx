@@ -12,13 +12,11 @@ import ErrorFallback from "@/shared/components/ErrorFallback";
 import Text from "@/shared/components/Text";
 import styles from "./App.module.css";
 
-// Size of the first batch, and how many placeholder cards show while it loads.
-const INITIAL_CARD_COUNT = 10;
+// How many placeholder cards show while the cards load.
+const LOADING_CARD_COUNT = 10;
 
 const CardCatalog = () => {
-  const { data: cards = [], isLoading } = useCards({
-    initialLimit: INITIAL_CARD_COUNT,
-  });
+  const { data: cards = [], isLoading } = useCards();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const selectedCard = useMemo(
@@ -80,7 +78,7 @@ const CardCatalog = () => {
         />
       )}
       <CardList>
-        {isLoading && <LoadingCards count={INITIAL_CARD_COUNT} />}
+        {isLoading && <LoadingCards count={LOADING_CARD_COUNT} />}
         {cardItems}
       </CardList>
       {selectedCard && (
